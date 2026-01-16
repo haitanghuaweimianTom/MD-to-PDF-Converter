@@ -35,7 +35,8 @@
    - 纸张大小选择"A4"
    - 点击"下一步(N) >"继续安装
 
-   ![MiKTeX Settings](images/miktex_settings.png)
+  ![Uploading 0d4bae238a33eac5387fbc2e77a72fd0.png…]()
+
 
 4. **完成安装**：
    - 等待安装完成
