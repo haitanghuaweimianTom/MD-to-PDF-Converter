@@ -35,7 +35,9 @@
    - 纸张大小选择"A4"
    - 点击"下一步(N) >"继续安装
 
-  ![Uploading 0d4bae238a33eac5387fbc2e77a72fd0.png…]()
+# 下图为 MiKTeX 安装时的关键设置界面：
+
+![MiKTeX 安装设置截图](https://raw.githubusercontent.com/haitanghuaweimianTom/image/main/settings-miktex.png "MiKTeX 自动安装宏包设置")
 
 
 4. **完成安装**：
