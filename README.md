@@ -1,59 +1,182 @@
-# Markdown 转 PDF 转换器 (MD to PDF Converter)
+# MD to PDF Converter with LaTeX Math Support
 
-这是一个基于 Python 开发的桌面级工具，旨在为用户提供简单、直观的界面，将 Markdown 文档快速转换为排版精美的 PDF 文件。
+## 工具介绍
 
-## 🌟 功能特点
+这是一个Markdown转PDF转换器，支持复杂的LaTeX数学公式（使用$...$表示行内公式，$$...$$表示块级公式）。
 
-*   **直观界面**：基于 Tkinter 开发的图形化界面，操作简单，无需记忆命令行。
-*   **标准语法支持**：全面支持标准 Markdown 语法，包括：
-    *   表格 (Tables)
-    *   栅栏代码块 (Fenced Code Blocks)
-    *   分级标题
-*   **数学公式支持**：
-    *   行内公式：使用 `$E=mc^2$` 格式。
-    *   块级公式：使用 `$$...$$` 格式。
-*   **实时转换日志**：提供转换进度反馈和错误调试信息。
-*   **一键预览**：转换完成后可直接在默认 PDF 阅读器中打开结果。
-*   **自动路径生成**：选定输入文件后自动建议输出路径，减少重复点击。
+主要功能：
+- 支持Markdown到PDF的直接转换
+- 支持复杂LaTeX数学公式渲染
+- 自动检查依赖（Pandoc和XeLaTeX）
+- 当PDF转换失败时，自动回退到HTML转换
+- 生成详细的转换日志
+- 支持中文文本和数学公式
 
-## 🚀 如何使用 (EXE 版本)
+## 安装说明
+### 使用前准备：
+在目标电脑上，确保：
 
-1.  **启动程序**：双击运行 `main.exe`。
-2.  **选择文件**：点击“Markdown 文件”旁的“浏览”按钮，选择你要转换的 `.md` 文件。
-3.  **确认输出**：程序会自动将 PDF 输出路径设为原文件同目录。如需修改，可点击“PDF 输出”旁的“浏览”按钮。
-4.  **开始转换**：点击“开始转换”按钮。进度条会开始运行，日志窗口会显示实时状态。
-5.  **查看结果**：转换完成后，弹窗会询问“是否打开 PDF 文件”，点击“是”即可立即预览。
+1. 已安装MikTeX和Pandoc
+2. 这两个程序的安装路径已添加到系统环境变量（PATH）
+3. 首次运行时，MikTeX会自动安装缺少的LaTeX包（需保持网络连接，并且耐心等待一段时间，仅第一次需要较长时间安装LaTeX包）
+4. 如果等待半小时后依旧无法正常使用，请重启电脑，让环境变量更改生效
 
-## 🛠️ 技术栈
+### MiKTeX安装详细设置：
 
-*   **GUI 框架**：Tkinter
-*   **核心逻辑**：
-    *   `Python-Markdown`：解析 Markdown 语法。
-    *   `WeasyPrint`：高性能的 HTML 到 PDF 渲染引擎。
-    *   `Regular Expressions`：预处理 LaTeX 数学公式。
+1. 双击`basic-miktex.exe`开始安装
+2. **选择安装范围**：
+   - 勾选"For all users (recommended)"
+   - 安装路径使用默认路径（通常为`C:\Program Files\MiKTeX`）
+3. **关键设置：自动安装宏包**：
+   - 在安装过程中，会出现"Settings"页面
+   - 找到"Install missing packages"选项
+   - 从下拉菜单中选择**Yes**（如图所示）
+   - 这个设置确保MiKTeX会自动下载并安装转换过程中需要的LaTeX宏包
+   - 纸张大小选择"A4"
+   - 点击"下一步(N) >"继续安装
 
-## 📦 如何从源码重新打包 (开发者参考)
+   ![MiKTeX Settings](images/miktex_settings.png)
 
-如果你修改了 `main.py` 或 `converter.py` 并想重新生成 `.exe`，建议使用 `PyInstaller`：
+4. **完成安装**：
+   - 等待安装完成
+   - 安装完成后，建议重启计算机以确保环境变量更新
 
-1.  安装依赖：
-    ```bash
-    pip install markdown weasyprint
-    pip install pyinstaller
-    ```
+### Pandoc安装：
 
-2.  使用以下命令打包（确保将相关 DLL 和依赖包含在内）：
-    ```bash
-    pyinstaller --noconfirm --onedir --windowed --name "MD_Converter" "main.py"
-    ```
+1. 双击`pandoc.msi`开始安装
+2. 勾选"For all users"选项
+3. 确保勾选"Add pandoc to PATH"选项
+4. 按照默认选项完成安装
 
-## ⚠️ 注意事项
+### 方式一：直接使用EXE文件（推荐）
 
-*   **中文字体**：PDF 转换质量取决于系统安装的字体。如果发现中文无法显示，请确保系统安装了标准字体（如 Arial 或微软雅黑）。
-*   **数学公式**：本工具采用 MathJax 兼容的 HTML 类名进行预处理。如果公式特别复杂，建议检查 LaTeX 语法的闭合性。
-*   **系统环境**：在 Windows 上运行打包后的 EXE 不需要安装 Python 环境，但需确保系统没有防火墙阻止文件写入权限。
+1. 下载`md2pdf.exe`文件
+2. 将文件放在任意目录即可使用
+3.直接将md文件拖动到exe上面，用exe打开，即在md文件的同一文件夹路径生成html网页，用浏览器打开，右键选择“打印”即可
 
----
+### 方式二：从源码运行
 
-**由 [haitanghuaweimianTom] 开发**
-*更新日期：2026-01-16*
+1. 确保安装了Python 3.6+和pip
+2. 安装依赖：
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. 运行脚本：
+   ```bash
+   python md2pdf.py input.md -o output.pdf
+   ```
+
+## 依赖要求
+
+转换器需要以下外部依赖：
+
+1. **Pandoc**：用于Markdown转换
+   - 下载地址：https://pandoc.org/installing.html
+
+2. **MiKTeX**：用于LaTeX公式渲染
+   - 下载地址：https://miktex.org/download
+
+在releases里面有对应的安装包。
+
+## 使用方法
+
+### 基本用法
+
+```bash
+md2pdf.exe input.md
+```
+
+这将生成一个名为`input.pdf`的输出文件。
+
+### 指定输出文件名
+
+```bash
+md2pdf.exe input.md -o output.pdf
+```
+
+### 开启调试模式
+
+```bash
+md2pdf.exe input.md --debug
+```
+
+### 仅检查依赖
+
+```bash
+md2pdf.exe --check-deps
+```
+
+## 示例
+
+### 示例1：基本转换
+
+```bash
+md2pdf.exe test_math.md
+```
+
+### 示例2：指定输出文件名
+
+```bash
+md2pdf.exe chinese_test.md -o 中文测试.pdf
+```
+
+### 示例3：调试模式
+
+```bash
+md2pdf.exe complex_formulas.md -o complex.pdf --debug
+```
+
+## 常见问题
+
+### 问题1：转换失败，提示缺少LaTeX包
+
+**解决方案**：
+- 确保MiKTeX已正确安装，安装时install missing packages 选择YES
+- 首次运行时，MiKTeX会**自动安装**缺少的包，请保持网络连接
+- 转换器已配置为`batchmode`，允许MiKTeX在后台自动安装缺少的包
+- 如果自动安装失败，可以手动打开MiKTeX包管理器，搜索并安装缺少的包
+- 示例：如果提示缺少`infwarerr.sty`，可以在MiKTeX包管理器**MiKTeX Console**中搜索`infwarerr`并安装
+
+### 问题2：中文显示乱码
+
+**解决方案**：
+- 确保Markdown文件使用UTF-8编码
+- 转换器已默认添加UTF-8编码声明，无需额外设置
+- 如果PDF转换中的中文显示有问题，可以使用HTML转换结果
+
+### 问题3：数学公式显示不正确
+
+**解决方案**：
+- 确保使用正确的LaTeX语法
+- 行内公式使用`$...$`，块级公式使用`$$...$$`
+- 如果PDF转换失败，转换器会**自动生成HTML文件**，使用浏览器打开即可正确显示数学公式，可以在浏览器打开html文件后右键点击页面，选择 **打印** 即可输出PDF
+- HTML文件使用MathJax渲染公式，支持所有LaTeX语法
+
+### 问题4：转换速度慢
+
+**解决方案**：
+- 首次转换时，MiKTeX需要下载和安装缺少的LaTeX包，可能会比较慢
+- 后续转换会使用已安装的包，速度会加快
+- 建议首次运行时使用简单的测试文件，让MiKTeX安装基础包
+
+### 问题5：PDF转换失败，生成了HTML文件
+
+**解决方案**：
+- 这是正常的回退机制，当PDF转换失败时，会自动生成HTML文件
+- 可以使用浏览器打开HTML文件，然后使用浏览器的"打印"功能将其转换为PDF
+- HTML文件包含了所有内容和样式，转换为PDF后效果与直接生成的PDF类似
+
+### 问题6：提示"Windows API error 267: 目录名称无效"
+
+**解决方案**：
+- 这是由于MiKTeX无法找到指定的字体目录
+- 转换器已处理此问题，会自动回退到HTML转换
+- 可以直接使用生成的HTML文件，或手动调整MiKTeX的字体设置
+
+## 日志文件
+
+转换过程中会生成`md2pdf.log`日志文件，包含详细的转换信息和错误日志，便于调试和排查问题。
+
+## 技术支持
+
+如果遇到问题，请查看日志文件`md2pdf.log`，或联系开发者。
