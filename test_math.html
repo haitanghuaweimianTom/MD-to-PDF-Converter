@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>test_math</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="math-formula-test-document">Math Formula Test Document</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This document tests various LaTeX math formulas using the MD to PDF
+converter.</p>
+<h2 id="basic-math-operations">Basic Math Operations</h2>
+<ul>
+<li>Addition: <span class="math inline">\(a + b = c\)</span></li>
+<li>Subtraction: <span class="math inline">\(x - y = z\)</span></li>
+<li>Multiplication: <span class="math inline">\(m \times n = p\)</span>
+or <span class="math inline">\(m \cdot n = p\)</span></li>
+<li>Division: <span class="math inline">\(\frac{a}{b} = c\)</span> or
+<span class="math inline">\(a/b = c\)</span></li>
+</ul>
+<h2 id="powers-and-roots">Powers and Roots</h2>
+<ul>
+<li>Square: <span class="math inline">\(x^2\)</span></li>
+<li>Cube: <span class="math inline">\(x^3\)</span></li>
+<li>nth power: <span class="math inline">\(x^n\)</span></li>
+<li>Square root: <span class="math inline">\(\sqrt{x}\)</span></li>
+<li>nth root: <span class="math inline">\(\sqrt[n]{x}\)</span></li>
+<li>Complex: <span class="math inline">\(\sqrt{a^2 + b^2}\)</span></li>
+</ul>
+<h2 id="trigonometry">Trigonometry</h2>
+<ul>
+<li>Sine: <span class="math inline">\(\sin(\theta)\)</span></li>
+<li>Cosine: <span class="math inline">\(\cos(\theta)\)</span></li>
+<li>Tangent: <span class="math inline">\(\tan(\theta)\)</span></li>
+<li>Inverse: <span class="math inline">\(\sin^{-1}(x)\)</span> or <span
+class="math inline">\(\arcsin(x)\)</span></li>
+<li>Pythagorean identity: <span class="math inline">\(\sin^2(x) +
+\cos^2(x) = 1\)</span></li>
+</ul>
+<h2 id="block-formulas">Block Formulas</h2>
+<h3 id="einsteins-equation">Einstein’s Equation</h3>
+<p><span class="math display">\[E = mc^2\]</span></p>
+<h3 id="quadratic-formula">Quadratic Formula</h3>
+<p><span class="math display">\[x = \frac{-b \pm \sqrt{b^2 -
+4ac}}{2a}\]</span></p>
+<h3 id="integral">Integral</h3>
+<p><span class="math display">\[\int_{-\infty}^{\infty} e^{-x^2} dx =
+\sqrt{\pi}\]</span></p>
+<h3 id="summation">Summation</h3>
+<p><span class="math display">\[\sum_{n=1}^{\infty} \frac{1}{n^2} =
+\frac{\pi^2}{6}\]</span></p>
+<h3 id="product">Product</h3>
+<p><span class="math display">\[\prod_{i=1}^{n} i = n!\]</span></p>
+<h2 id="matrix-operations">Matrix Operations</h2>
+<h3 id="simple-matrix">Simple Matrix</h3>
+<p><span class="math display">\[\begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{pmatrix}\]</span></p>
+<h3 id="identity-matrix">Identity Matrix</h3>
+<p><span class="math display">\[I = \begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}\]</span></p>
+<h3 id="matrix-multiplication">Matrix Multiplication</h3>
+<p><span class="math display">\[\begin{pmatrix}
+a &amp; b \\
+c &amp; d
+\end{pmatrix} \times \begin{pmatrix}
+e &amp; f \\
+g &amp; h
+\end{pmatrix} = \begin{pmatrix}
+ae + bg &amp; af + bh \\
+ce + dg &amp; cf + dh
+\end{pmatrix}\]</span></p>
+<h2 id="greek-letters">Greek Letters</h2>
+<ul>
+<li>Alpha: <span class="math inline">\(\alpha\)</span></li>
+<li>Beta: <span class="math inline">\(\beta\)</span></li>
+<li>Gamma: <span class="math inline">\(\gamma\)</span>, <span
+class="math inline">\(\Gamma\)</span></li>
+<li>Delta: <span class="math inline">\(\delta\)</span>, <span
+class="math inline">\(\Delta\)</span></li>
+<li>Epsilon: <span class="math inline">\(\epsilon\)</span>, <span
+class="math inline">\(\varepsilon\)</span></li>
+<li>Zeta: <span class="math inline">\(\zeta\)</span></li>
+<li>Eta: <span class="math inline">\(\eta\)</span></li>
+<li>Theta: <span class="math inline">\(\theta\)</span>, <span
+class="math inline">\(\Theta\)</span></li>
+<li>Iota: <span class="math inline">\(\iota\)</span></li>
+<li>Kappa: <span class="math inline">\(\kappa\)</span></li>
+<li>Lambda: <span class="math inline">\(\lambda\)</span>, <span
+class="math inline">\(\Lambda\)</span></li>
+<li>Mu: <span class="math inline">\(\mu\)</span></li>
+<li>Nu: <span class="math inline">\(\nu\)</span></li>
+<li>Xi: <span class="math inline">\(\xi\)</span>, <span
+class="math inline">\(\Xi\)</span></li>
+<li>Omicron: <span class="math inline">\(\omicron\)</span></li>
+<li>Pi: <span class="math inline">\(\pi\)</span>, <span
+class="math inline">\(\Pi\)</span></li>
+<li>Rho: <span class="math inline">\(\rho\)</span>, <span
+class="math inline">\(\varrho\)</span></li>
+<li>Sigma: <span class="math inline">\(\sigma\)</span>, <span
+class="math inline">\(\Sigma\)</span></li>
+<li>Tau: <span class="math inline">\(\tau\)</span></li>
+<li>Upsilon: <span class="math inline">\(\upsilon\)</span>, <span
+class="math inline">\(\Upsilon\)</span></li>
+<li>Phi: <span class="math inline">\(\phi\)</span>, <span
+class="math inline">\(\varphi\)</span>, <span
+class="math inline">\(\Phi\)</span></li>
+<li>Chi: <span class="math inline">\(\chi\)</span></li>
+<li>Psi: <span class="math inline">\(\psi\)</span>, <span
+class="math inline">\(\Psi\)</span></li>
+<li>Omega: <span class="math inline">\(\omega\)</span>, <span
+class="math inline">\(\Omega\)</span></li>
+</ul>
+<h2 id="calculus">Calculus</h2>
+<h3 id="derivative">Derivative</h3>
+<ul>
+<li>Simple derivative: <span class="math inline">\(\frac{d}{dx}x^2 =
+2x\)</span></li>
+<li>Partial derivative: <span class="math inline">\(\frac{\partial
+f}{\partial x}\)</span></li>
+<li>Chain rule: <span class="math inline">\(\frac{dy}{dx} =
+\frac{dy}{du} \cdot \frac{du}{dx}\)</span></li>
+</ul>
+<h3 id="integral-forms">Integral Forms</h3>
+<p><span class="math display">\[\int x^2 dx = \frac{x^3}{3} +
+C\]</span></p>
+<p><span class="math display">\[\int_{a}^{b} f(x) dx = F(b) -
+F(a)\]</span></p>
+<p><span class="math display">\[\iint_D f(x,y) dA\]</span></p>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>Simple limit: <span class="math inline">\(\lim_{x \to 0} \frac{\sin
+x}{x} = 1\)</span></li>
+<li>One-sided limit: <span class="math inline">\(\lim_{x \to 0^+}
+f(x)\)</span></li>
+<li>Infinity limit: <span class="math inline">\(\lim_{x \to \infty}
+\frac{1}{x} = 0\)</span></li>
+</ul>
+<h2 id="complex-numbers">Complex Numbers</h2>
+<ul>
+<li>Imaginary unit: <span class="math inline">\(i^2 = -1\)</span> or
+<span class="math inline">\(j^2 = -1\)</span></li>
+<li>Complex number: <span class="math inline">\(z = a + bi\)</span></li>
+<li>Complex conjugate: <span class="math inline">\(\overline{z} = a -
+bi\)</span></li>
+<li>Magnitude: <span class="math inline">\(|z| = \sqrt{a^2 +
+b^2}\)</span></li>
+</ul>
+<h2 id="set-theory">Set Theory</h2>
+<ul>
+<li>Element of: <span class="math inline">\(x \in A\)</span></li>
+<li>Not element of: <span class="math inline">\(x \notin A\)</span></li>
+<li>Subset: <span class="math inline">\(A \subset B\)</span> or <span
+class="math inline">\(A \subseteq B\)</span></li>
+<li>Union: <span class="math inline">\(A \cup B\)</span></li>
+<li>Intersection: <span class="math inline">\(A \cap B\)</span></li>
+<li>Empty set: <span class="math inline">\(\emptyset\)</span></li>
+<li>Universal set: <span class="math inline">\(\mathbb{U}\)</span></li>
+</ul>
+<h2 id="logic">Logic</h2>
+<ul>
+<li>And: <span class="math inline">\(\land\)</span> or <span
+class="math inline">\(\wedge\)</span></li>
+<li>Or: <span class="math inline">\(\lor\)</span> or <span
+class="math inline">\(\vee\)</span></li>
+<li>Not: <span class="math inline">\(\neg\)</span> or <span
+class="math inline">\(\lnot\)</span></li>
+<li>Implies: <span class="math inline">\(\implies\)</span> or <span
+class="math inline">\(\rightarrow\)</span></li>
+<li>Equivalent: <span class="math inline">\(\iff\)</span> or <span
+class="math inline">\(\leftrightarrow\)</span></li>
+<li>For all: <span class="math inline">\(\forall\)</span></li>
+<li>Exists: <span class="math inline">\(\exists\)</span></li>
+</ul>
+<h2 id="chinese-text-with-math">Chinese Text with Math</h2>
+<p>这是中文文本，包含数学公式：<span class="math inline">\(a^2 + b^2 =
+c^2\)</span>（勾股定理）。</p>
+<h3 id="中文环境下的块级公式">中文环境下的块级公式</h3>
+<p><span class="math display">\[
+S = \frac{1}{2} \times a \times h
+\]</span></p>
+<p>其中，<span class="math inline">\(S\)</span>表示面积，<span
+class="math inline">\(a\)</span>表示底边长，<span
+class="math inline">\(h\)</span>表示高。</p>
+<h2 id="mixed-content">Mixed Content</h2>
+<p>Text with <span class="math inline">\(inline\)</span> math and
+<strong>bold</strong> text, as well as <em>italic</em> text. <span
+class="math inline">\(x = y + z\)</span> and some more text.</p>
+<h2 id="code-blocks-with-math">Code Blocks with Math</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_area(radius):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Area = πr²</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">3.14159</span> <span class="op">*</span> radius <span class="op">**</span> <span class="dv">2</span></span></code></pre></div>
+<h2 id="tables-with-math">Tables with Math</h2>
+<table>
+<thead>
+<tr>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(A = \pi r^2\)</span></td>
+<td>Area of a circle</td>
+</tr>
+<tr>
+<td><span class="math inline">\(V = \frac{4}{3} \pi r^3\)</span></td>
+<td>Volume of a sphere</td>
+</tr>
+<tr>
+<td><span class="math inline">\(C = 2\pi r\)</span></td>
+<td>Circumference of a circle</td>
+</tr>
+</tbody>
+</table>
+<h2 id="final-test">Final Test</h2>
+<p>This document tests various LaTeX math formulas to ensure the
+converter works correctly.</p>
+<p><span class="math display">\[
+\frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{2}}}} = \frac{5}{8}
+\]</span></p>
+</body>
+</html>
