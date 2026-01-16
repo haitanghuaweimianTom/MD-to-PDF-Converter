@@ -20,7 +20,7 @@
 2. 这两个程序的安装路径已添加到系统环境变量（PATH）
 关于miktex和pandoc的安装，请双击basic-miktex.exe和pandoc.msi完成，记得勾选for all users
 3. 首次运行时，MikTeX会自动安装缺少的LaTeX包（需保持网络连接，并且耐心等待一段时间，仅第一次需要较长时间安装LaTeX包）
-4.如果等待半小时后依旧无法正常使用，请重启电脑，让环境变量更改生效
+4. 如果等待半小时后依旧无法正常使用，请重启电脑，让环境变量更改生效
 
 ### 方式一：直接使用EXE文件（推荐）
 
@@ -133,3 +133,4 @@ md2pdf.exe complex_formulas.md -o complex.pdf --debug
 ## 技术支持
 
 如果遇到问题，请查看日志文件`md2pdf.log`，或联系开发者。
+
